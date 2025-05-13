@@ -6,7 +6,7 @@ import { useAuth } from '../authContext.jsx';
 import SceneTable from "./sceneTable/sceneTable.jsx";
 import ReadingTable from "./readingTable/readingTable.jsx";
 import ListeningTable from "./listeningTable/listeningTable.jsx";
-import LoadingIndicator from "../loadingIndicator/LoadingIndicator.jsx";
+import LoadingIndicator from "../loadingIndicator/loadingIndicator.jsx";
 
 function StudentManagement() {
     const [students, setStudents] = useState([]);
