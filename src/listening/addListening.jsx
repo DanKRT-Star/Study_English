@@ -5,7 +5,7 @@ import QuestionUtils from "../questionUtils/questionUtils.jsx";
 import AnswerUtils from "../answerUtils/answerUtils.jsx";
 import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
-import LoadingIndicator from '../loadingIndicator/LoadingIndicator.jsx';
+import LoadingIndicator from '../loadingIndicator/loadingIndicator.jsx';
 
 
 function AddListening() {
