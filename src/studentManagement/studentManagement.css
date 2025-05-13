@@ -1,0 +1,251 @@
+.studentManagementContainer {
+    width: 100%;
+    height: 100%;
+    margin-left: 90px;
+    background: rgb(249, 248, 248);
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    color: black;
+    overflow: hidden;
+}
+
+.studentManagementContainer .leftColumn {
+    flex: 1;
+    border-radius: 25px;
+    background: transparent;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    height: 100%;
+}
+
+.studentManagementContainer .leftColumn.hidden {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 80%;
+    z-index: 10;
+    transform: translateX(-100%);
+    opacity: 0;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.studentManagementContainer .leftColumn .studentList {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto; /* Thêm cuộn dọc nếu nội dung vượt quá chiều cao */
+}
+
+.studentManagementContainer .leftColumn .studentList h2 {
+    text-align: center;
+    font-size: 30px;
+    margin: 0;
+    padding: 10px 0;
+    color: var(--background-color);
+}
+
+.studentManagementContainer .leftColumn .studentList table {
+    width: 100%;
+    height: fit-content;
+    border-radius: 20px;
+    border-spacing: 0;
+    max-height: 100%;
+    overflow: auto;
+}
+
+.studentManagementContainer .leftColumn .studentList table th,
+.studentManagementContainer .leftColumn .studentList table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.studentManagementContainer .leftColumn .studentList table thead tr {
+    background: var(--background-color);
+    color: white;
+}
+
+.studentManagementContainer .leftColumn .studentList table thead tr th {
+    padding: 10px;
+}
+
+.studentManagementContainer .leftColumn .studentList table tbody tr:nth-child(even) {
+    background-color: rgba(0, 123, 255, 0.1);
+}
+
+.studentManagementContainer .leftColumn .studentList table tbody tr:nth-child(odd) {
+    background: transparent;
+}
+
+.studentManagementContainer .leftColumn .studentList table tbody tr td {
+    padding: 10px;
+}
+
+.studentManagementContainer .leftColumn .studentList table tbody tr td .onlineStatus {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.studentManagementContainer .leftColumn .studentList table tbody tr td .offlineStatus {
+    color: var(--third-color);
+    font-weight: bold;
+}
+
+.studentManagementContainer .leftColumn .studentList table tbody tr td input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: transparent;
+    border: solid 3px var(--background-color);
+    height: 20px;
+    width: 20px;
+    font-size: 20px;
+    padding: 0;
+    cursor: pointer;
+    margin-left: 50%;
+    transform: translate(-50%);
+}
+
+.studentManagementContainer .leftColumn .studentList table tbody tr td input[type="checkbox"]:checked {
+    position: relative;
+}
+
+.studentManagementContainer .leftColumn .studentList table tbody tr td input[type="checkbox"]:checked::after {
+    content: "✔";
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    color: var(--background-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 15px;
+}
+
+.studentManagementContainer .rightColumn {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    border-radius: 25px;
+    padding: 10px;
+    background: transparent;
+    gap: 5px;
+    height: 100%;
+    width: 100%;
+}
+
+.studentManagementContainer .rightColumn .topSection {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    height: fit-content;
+}
+
+.rightColumn .topSection .tab {
+    height: fit-content;
+    width: fit-content;
+    padding: 5px 25px;
+    border-radius: 10px;
+    background: var(--background-color);
+    color: white;
+    font-weight: bold;
+    filter: brightness(0.8);
+}
+
+.rightColumn .topSection h2 {
+    margin: 0;
+    padding: 0;
+    height: fit-content;
+    width: fit-content;
+    color: var(--background-color);
+}
+
+.rightColumn .topSection .tab:hover {
+    filter: brightness(0.9);
+    cursor: pointer;
+}
+
+.tab.listening.active,
+.tab.reading.active,
+.tab.scene.active {
+    filter: brightness(1);
+}
+
+.rightColumn .bottomSection {
+    width: 100%;
+    height: 100%;
+    background: var(--background-color);
+    border-radius: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toggleLeftColumnBtn {
+    display: none;
+}
+
+@media (max-width: 989px) {
+    .studentManagementContainer {
+        position: relative;
+        padding: 0;
+        height: 100%; 
+    }
+
+    .studentManagementContainer .leftColumn {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%; 
+        width: 80%;
+        z-index: 10;
+        transform: translateX(-100%);
+        opacity: 0;
+        background: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .studentManagementContainer .leftColumn.visible {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    .studentManagementContainer .rightColumn {
+        flex: 1;
+        height: 100%; /* Đảm bảo chiều cao đầy đủ */
+    }
+
+    .toggleLeftColumnBtn {
+        display: flex;
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        z-index: 20;
+        background: var(--background-color);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+    }
+
+    .toggleLeftColumnBtn:hover {
+        transform: scale(1.1);
+    }
+}
+
+@media (max-width: 768px) {
+    .studentManagementContainer {
+        margin-left: 70px;
+    }
+}

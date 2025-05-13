@@ -1,0 +1,300 @@
+.playModalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.playModalLayout {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.leftColumn, .rightColumn {
+    flex: 1;
+    height: 100%;
+    padding: 10px;
+
+}
+
+.leftColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 20px;
+    background: #fff;
+    overflow: auto;
+}
+
+
+
+.leftColumn iframe {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.leftColumn .readingContent {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+
+.leftColumn .readingContent p {
+    text-align: start;
+    width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word; 
+    white-space: normal; 
+}
+
+.leftColumn audio {
+    height: 50px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    min-height: 50px;
+}
+
+.leftColumn .picturesContainer {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .leftColumn .picturesContainer img {
+    width: 100%; 
+    object-fit: cover; 
+    border-radius: 5px; 
+}
+
+
+.rightColumn {
+    background: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 20px;
+    overflow: auto;
+}
+
+.rightColumn .manageTestContainer {
+    width: 100%;
+    height: 30%;
+    height: fit-content;
+    display: flex;
+    gap: 10px;
+}
+
+.rightColumn .manageTestContainer .submitContainer {
+    height: 100%;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rightColumn .manageTestContainer .submitContainer h3 {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rightColumn .manageTestContainer .submitContainer h3 i {
+    height: fit-content;
+    width: fit-content;
+    font-size: 20px;
+}
+.rightColumn .manageTestContainer .submitContainer button {
+    border: none;
+    outline: none;
+    background: #fff;
+    color: var(--background-color);
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.rightColumn .manageTestContainer .questionNavContainer {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    border-left: solid 3px #fff;
+    padding-left: 10px;
+}
+
+
+.questionNavContainer .multiple, 
+.questionNavContainer .essay {
+    display: flex;
+    gap: 5px;
+}
+
+.rightColumn h3 {
+    color: #fff;
+}
+
+.questionNavContainer .multiple button, 
+.questionNavContainer .essay button {
+    border: none;
+    outline: none;
+    background:#fff;
+    color: var(--background-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    width: 30px;
+    aspect-ratio: 1/1;
+}
+
+.questionNavContainer .multiple button:hover, 
+.questionNavContainer .essay button:hover {
+    background: var(--background-color);
+    outline: solid 2px #fff;
+    color: #fff;
+}
+
+
+
+.rightColumn .multipleContainer {
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 20px;
+    padding: 10px;
+}
+
+.rightColumn .multipleContainer .questionItem {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 10px;
+    border: solid 3px #fff;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.rightColumn .multipleContainer .questionItem p {
+    width: 100%;
+    border-bottom: solid 3px #fff;
+    text-align: start;
+    color: #fff;
+    font-weight: bold;
+}
+
+.rightColumn .multipleContainer .questionItem .option {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    height: fit-content;
+    gap: 5px;
+}
+
+
+.rightColumn .multipleContainer .questionItem .option .ratio {
+    background-color: var(--background-color);
+    appearance: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    width: 21px;
+    aspect-ratio: 1/1;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.rightColumn .multipleContainer .questionItem .option label {
+    color: #fff;
+    font: bold;
+}
+
+.rightColumn .multipleContainer .questionItem .option .ratio:checked {
+    background-color: var(--background-color);
+}
+
+.rightColumn .multipleContainer .questionItem .option .ratio:checked::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.rightColumn .essayContainer {
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 20px;
+    padding: 10px;
+}
+  
+.rightColumn .essayContainer .questionItem {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    align-items: start;
+    justify-content: center;
+}
+
+.rightColumn .essayContainer .questionItem p {
+    color: #fff;
+}
+
+.rightColumn .essayContainer .questionItem textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+
+    background: #fff;
+    resize: vertical;
+    color: black;
+    font-size: 15px;
+    min-height: 100px;
+}
+
+.rightColumn .essayContainer .questionItem label {
+    color: black;
+    font-size: 16px;
+    margin-left: 6px;
+    cursor: pointer;
+}
+

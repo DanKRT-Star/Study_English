@@ -1,0 +1,56 @@
+:root {
+  font-family: 'Baloo 2', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  --background-color: rgb(126, 187, 176);
+  --primary-color: rgb(145, 236, 124);
+  --second-color: rgb(255, 246, 189);
+  --third-color: rgb(249, 169, 108);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --font-size-small: clamp(12px, 1vw, 16px);
+  --font-size-medium: clamp(14px, 1.5vw, 18px);
+  --font-size-large: clamp(16px, 2vw, 24px);
+}
+
+input,
+textarea,
+button,
+select,
+input::placeholder,
+textarea::placeholder {
+  font-family: inherit; /* hoặc 'Poppins', sans-serif */
+}
+
+body {
+  margin: 0;
+  place-items: center;
+  width: 100vw;
+  height: 100vh;
+  font-size: var(--font-size-medium);
+}
+
+p, h3, h2, h1 {
+  color: black;
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  font-size: var(--font-size-large);
+}
+
+p {
+  font-size: var(--font-size-small);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

@@ -1,0 +1,105 @@
+.NavContainer {
+    height: 100%;
+    width: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    background-color: var(--background-color);
+    position: absolute;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    left: 0;
+    gap: 10px;
+    z-index: 2;
+    border-right: solid 4px rgb(249, 248, 248);
+}
+
+.NavContainer.expand {
+    width: 250px;
+}
+
+.NavContainer .Toggle {
+    border: none;
+    outline: none;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--background-color);
+    background-color: white;
+    height: auto;
+    font-size: 35px;
+}
+
+.NavContainer .List ul {
+    list-style: none;  
+    padding: 0; 
+    margin: 0; 
+}
+
+.NavContainer .List ul li {
+    transition: all ease 0.3s;
+}
+
+.NavContainer .List ul li:hover {
+    transform: translateX(5px);
+}
+
+.NavContainer .List {
+    width: 250px;
+    align-items: center;
+    margin-left: 35%;
+}
+
+.NavContainer.expand .List {
+        margin-left: 10%;
+}
+
+.NavContainer .List .Item {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    color: white;
+    margin-bottom: 10px;
+    font-size: 20px;
+    gap: 35px;
+    transition: all ease 0.3s;
+}
+
+.NavContainer .List .Item i {
+    font-size: 25px;
+    width: fit-content;
+    height: fit-content;
+    
+}
+
+.NavContainer .List .Item span {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    text-align: left;
+    cursor: pointer;
+    align-items: center;
+}
+
+.Item.active {
+    background: rgb(249, 248, 248);
+    padding-left: 10px;
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+}
+
+.Item.active i, .Item.active span {
+    color: var(--background-color);
+}
+
+@media (max-width: 768px) {
+    .NavContainer {
+        width: 70px;
+    }
+    .NavContainer .List {
+        margin-left: 30%;
+    }
+}
+

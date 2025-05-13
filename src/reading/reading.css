@@ -1,0 +1,13 @@
+.readingContainer {
+    width: 100%;
+    height: 100%;
+    padding-left: 90px;
+    background: rgb(249, 248, 248);
+    overflow: auto;
+}
+
+@media (max-width: 768px) {
+    .readingContainer {
+        padding-left: 70px;
+    }
+}

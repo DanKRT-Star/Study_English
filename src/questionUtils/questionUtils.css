@@ -1,0 +1,317 @@
+.addBtnContainer {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    width: 57px;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    overflow-x: hidden;
+    gap: 10px;
+    padding: 5px;
+    transition: all 0.3s ease;
+}
+
+.addBtnContainer .button {
+    height: 50px;
+    aspect-ratio: 1/1;
+    background: var(--background-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.button.addToogle i {
+    font-size: 25px;
+    transition: all 0.3s ease;
+}
+
+.addBtnContainer .button:hover {
+    background-color: white;
+    color: var(--background-color);
+    outline: solid 3px var(--background-color);
+}
+
+.button.addToogle i.rotate {
+    transform: rotateZ(45deg);
+}
+
+.addBtnContainer.expand {
+    width: 120px;
+}
+
+.editForm {
+    position: fixed;
+    right: 10px;
+    bottom: 70px;
+    width: 90%;
+    max-height: 80vh;
+    background: white;
+    border: solid 2px var(--background-color);
+    border-radius: 30px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items:start;
+    justify-content: start;
+    gap: 10px;
+    transform: scale(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+    overflow: auto;
+    z-index: 3;
+}
+
+.editForm input {
+    width: 100%;
+}
+
+.show {
+    transform: scale(1);
+}
+
+
+.editForm input {
+    height: fit-content;
+    width: 300px;
+    outline: none;
+    border: none;
+    padding: 5px 5px 5px 10px;
+    background: rgb(215, 215, 215);
+    color: black;
+    border-radius: 30px;
+    border: solid 2px var(--background-color);
+}
+
+.editForm input:focus {
+    background: rgb(215, 215, 215);
+}
+
+.editForm input::placeholder {
+    font-size: 15px;
+}
+
+.questionContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.questionContainer .question {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 5px;
+    padding: 0;
+    margin: 0;
+}
+
+.questionContainer .question .questionLabel {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+}
+
+.questionContainer .question .questionLabel span {
+    display: flex;
+    gap: 10px;
+}
+
+.questionContainer .question .questionLabel button {
+    border: none;
+    outline: none;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 50%;
+    background: var(--background-color);
+}
+
+.questionContainer .question .questionLabel button i {
+    font-size: 20px;
+}
+
+.questionContainer .question .option {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+
+}
+
+.questionContainer .question .option .ratio {
+    appearance: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    width: 21px;
+    aspect-ratio: 1/1;
+    border: 2px solid var(--background-color);
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    background-color: white;
+}
+
+.questionContainer .question .option  .ratio:checked {
+    background-color: white;
+  }
+
+  .questionContainer .question .option  .ratio:checked::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--background-color);
+    border-radius: 50%;
+}
+
+.addQuestionBtn {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    gap: 10px;
+}
+
+.addQuestionBtn button {
+    width: fit-content;
+    aspect-ratio: 1/1;
+    background: var(--background-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.addQuestionBtn button i {
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+
+.editForm textarea {
+    width: 100%;
+    height: fit-content;
+    min-height: 200px;
+    resize: vertical;
+    background:rgb(215, 215, 215);
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+    border: solid 2px var(--background-color);
+    color: black;
+}
+
+
+textarea::placeholder {
+    font-size: 15px;
+    color: black;
+    opacity: 0.7;
+}
+
+.picturesPreview {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    background: rgb(215, 215, 215);
+    overflow: auto;
+    padding: 10px;
+    min-height: 150px;
+}
+
+.pictureItem {
+    position: relative;
+    width: auto; 
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+.pictureItem img {
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.pictureItem .deleteButton {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.pictureItem .deleteButton i {
+    font-size: 20px;
+    color: white;
+}
+
+.pictureItem:hover .deleteButton {
+    visibility: visible;
+}
+
+.pictureItem:hover img {
+    filter:brightness(0.5);
+}
+
+.audioContainer {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+
+audio {
+    width: 100%;
+    height: 50px;
+}
+
+@media (max-width: 500px) {
+    .editForm {
+        padding: 10px;
+    }    
+}

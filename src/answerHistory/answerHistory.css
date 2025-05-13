@@ -1,0 +1,190 @@
+.answerHistoryContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 4;
+
+}
+
+.answerHistoryContainer h3 {
+  color: var(--background-color);
+  margin: 0;
+  padding: 0;
+}
+
+.answerHistoryList {
+    width: 80%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border-radius: 15px;
+    padding: 10px;
+    padding-left: 12px;
+    overflow: auto;
+    text-align: start;
+    gap: 10px;
+    max-height: 90%;
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.answerHistoryList .Session {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    width: 100%;
+    height: fit-content;
+
+}
+
+.answerHistoryList .Session.Result {
+    gap: 10px;
+    align-items: start;
+    height: 100%;
+    flex-wrap: wrap;
+    overflow: auto;
+}
+
+.answerHistoryList .Session.Result .Multiple,
+.answerHistoryList .Session.Result .Essay {
+  flex: 1;
+  min-width: 300px;
+  height: auto; 
+  overflow-y: auto;
+  display: flex;
+  flex-direction:column ;
+  align-items: start;
+  justify-content: start;
+}
+
+.answerContainer {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 5px;
+}
+
+.answerContainer .item {
+    height: 30px;
+    aspect-ratio: 1/1;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid 2px var(--background-color);
+    font-size: 15px;
+    color: var(--background-color);
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.answerContainer .item:hover {
+    transform: scale(1.2);
+}
+
+.answerContainer .item.correct {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+}
+
+.answerContainer .item.incorrect {
+    background: var(--third-color);
+    color: white;
+    border: none;
+}
+
+.answerDetails {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+
+.answerDetails .options{
+    width: 100%;
+    height: fit-content;
+}
+
+.answerDetails .options .option {
+    padding: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 15px;
+    width: fit-content;
+}
+
+.answerDetails .options .option.correct {
+    background: var(--primary-color);
+}
+
+.answerDetails .options .option.incorrect {
+    background: var(--third-color);
+}
+
+.Session.Result .Essay {
+    background: var(--background-color);
+    padding: 10px;
+    border-radius: 25px;
+}
+
+.Session.Result .Essay h3{
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+.Session.Result .Essay .answerContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    overflow: auto;
+    color: white;
+    
+}
+
+.Essay .answerContainer .questionItem {
+    width: 100%;
+    height: fit-content;
+    max-height: 45%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: stretch;
+}
+
+.answerHistoryList button {
+    background: var(--background-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}

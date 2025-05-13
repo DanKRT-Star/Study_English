@@ -1,0 +1,107 @@
+.readingItems {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+    padding: 10px;
+}
+
+.readingCard {
+    border-radius: 10px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    position: relative;
+    width: 100%;
+}
+
+.readingCard:hover .picture {
+    transform: translateY(-10px);
+}
+
+.readingCard .picture {
+    width: 30%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+
+}
+
+.readingCard .picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.readingCard .content {
+    width: 100%;
+    height: fit-content;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    background: var(--background-color);
+    position: absolute;
+    bottom: 0;
+    border-radius: 20px;
+}
+
+.readingCard .title {
+    margin-bottom: 10px;
+    width: 50%;
+}
+
+.readingCard .title h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: left;
+    height: fit-content;
+    word-wrap: break-word;
+    overflow-wrap: break-word; 
+    white-space: normal; 
+}
+
+.readingCard .title p {
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+}
+
+.readingCard .manage {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.readingCard .manage button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #000;
+    transition: color 0.2s ease;
+}
+
+.readingCard .manage button:hover {
+    color: #000;
+}
+
+
+@media (max-width: 500px) {
+    .readingItems {
+        display: flex;
+        flex-direction: column;
+    }
+}

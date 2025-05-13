@@ -1,0 +1,227 @@
+#root {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-color: var(--background-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-around; 
+}
+
+h2 {
+  color: black;
+}
+
+.loginContainer {
+  height: 250px;
+  width: 350px;
+  padding: 20px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 30px;
+  animation: slideFadeInToLeft 1s ease forwards;
+}
+
+.loginContainer .loginInputForm {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.loginContainer .loginInputForm input {
+  padding: 5px;
+  width: 90%;
+  border-radius: 30px;
+  outline: none;
+  border: none;
+  background: rgb(222, 221, 221);
+  padding-left: 15px;
+  color: black;
+}
+
+.loginContainer .loginInputForm input::placeholder {
+  color: black;
+}
+
+.loginContainer .changeToRegister, 
+.registerContainer .changeToLogin {
+  background: none;
+  outline: none;
+  border: none;
+  color: black;
+  text-decoration: underline;
+}
+
+.loginContainer .changeToRegister:hover, 
+.registerContainer .changeToLogin:hover {
+  color: blue;
+}
+
+.mashmallow1 {
+  width: 350px;
+  height: 350px;
+  padding: 0;
+  margin: 0;
+}
+
+.mashmallow1 img {
+  width: 100%;
+  height: 100%;
+  animation: customBounce 1.025s ease-in-out infinite, showUp 1s ease forwards;
+
+}
+
+.milk {
+  width: 350px;
+  height: 350px;
+  padding: 0;
+  margin: 0;
+}
+
+.milk img {
+  width: 100%;
+  height: 100%;
+  animation: rotate 20s linear infinite, showUp 1s ease forwards;
+}
+
+.registerContainer {
+  height: 350px;
+  width: 350px;
+  padding: 20px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 30px;
+  animation: slideFadeInToRight 1s ease forwards;
+}
+
+.registerContainer .registerInputForm {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.registerContainer .registerInputForm input {
+  padding: 5px;
+  width: 90%;
+  border-radius: 30px;
+  outline: none;
+  border: none;
+  background: rgb(222, 221, 221);
+  padding-left: 15px;
+  color: black;
+}
+
+.registerContainer .registerInputForm input::placeholder {
+  color: black;
+}
+
+
+.invisible {
+  display: none;
+}
+
+@keyframes slideFadeInToRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFadeInToLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes showUp {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes customBounce {
+  0% {
+    transform: translateY(0);
+  }
+  39% {
+    transform: translateY(-50px); /* lên tới vị trí cao */
+  }
+  66.5% {
+    transform: translateY(-50px); /* giữ nguyên ở trên */
+  }
+  100% {
+    transform: translateY(0); /* xuống lại vị trí cũ */
+  }
+}
+
+.slideFadeOutToRight {
+  animation: slideFadeOutToRight 0.5s forwards;
+}
+
+.slideFadeOutToLeft {
+  animation: slideFadeOutToLeft 0.5s forwards;
+}
+
+@keyframes slideFadeOutToRight {
+  to {
+    transform: translateX(50px); 
+    opacity: 0;
+  }
+}
+
+@keyframes slideFadeOutToLeft{
+  to {
+    transform: translateX(-50px); 
+    opacity: 0;
+  }
+}
+
+@media (max-width: 788px) {
+  #root {
+    flex-direction: column;
+  }
+  .loginContainer {
+    height: 200px;
+  }
+
+  .mashmallow1, .milk {
+    width: 250px;
+    height: 250px;
+  }
+
+  .registerContainer {
+    height: fit-content;
+  }
+}

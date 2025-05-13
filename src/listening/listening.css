@@ -1,0 +1,13 @@
+.listeningContainer {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: rgb(249, 248, 248);
+    padding-left: 90px;
+}
+
+@media (max-width: 768px) {
+    .listeningContainer {
+        padding-left: 70px;
+    }
+}
