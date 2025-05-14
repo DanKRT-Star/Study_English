@@ -4,9 +4,9 @@ import { saveData, deleteData, readData } from "../firebaseconfig";
 import { useAuth } from '../authContext.jsx';
 import QuestionUtils from "../questionUtils/questionUtils.jsx";
 import dayjs from 'dayjs';
-import AnswerUtils from "../answerUtils/answerUtils.jsx";
-import LoadingIndicator from '../loadingIndicator/LoadingIndicator.jsx';
-import book from '../assets/book.png';
+import AnswerUtils from "../answerUtils/answerUtils";
+import LoadingIndicator from '../loadingIndicator/LoadingIndicator.jsx'
+import book from '../assets/book.png'
 
 function AddReading() {
     const [isExpand, setIsExpand] = useState(false);
