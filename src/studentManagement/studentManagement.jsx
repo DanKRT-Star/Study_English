@@ -13,7 +13,7 @@ function StudentManagement() {
     const [activeTab, setActiveTab] = useState('reading');
     const [isLoading, setIsLoading] = useState(true);
     const [filteredStudents, setFilteredStudents] = useState([]);
-    const [isLeftColumnVisible, setIsLeftColumnVisible] = useState(true); // State to toggle left column
+    const [isLeftColumnVisible, setIsLeftColumnVisible] = useState(true);
 
     useEffect(() => {
         setIsLoading(true);

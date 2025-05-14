@@ -6,6 +6,7 @@ import QuestionUtils from "../questionUtils/questionUtils.jsx";
 import dayjs from 'dayjs';
 import AnswerUtils from "../answerUtils/answerUtils.jsx";
 import LoadingIndicator from '../loadingIndicator/LoadingIndicator.jsx';
+import book from '../assets/book.png';
 
 function AddReading() {
     const [isExpand, setIsExpand] = useState(false);
@@ -163,7 +164,7 @@ function AddReading() {
                 {readingList.map((reading, index) => (
                     <div className="readingCard" key={index}>
                         <div className="picture">
-                            <img src="src\assets\book.png" alt=""/>
+                            <img src={book} alt=""/>
                         </div>
                         <div className="content">
                             <div className="title">

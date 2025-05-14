@@ -3,6 +3,7 @@ import { readData } from "../../firebaseconfig";
 import './listeningTable.css';
 import WhiteLoadingIndicator from "../../loadingIndicator/whiteLoadingIndicator";
 import AnswerHistory from "../../answerHistory/answerHistory";
+import dics from '../../assets/dics.png';
 
 function ListeningTable({students}) {
     const [listeningList, setListeningList] = useState([]);
@@ -129,7 +130,7 @@ function ListeningTable({students}) {
                     <div key={index} className="listeningItem">
                         <div className="listeningHeader">
                             <img
-                                src="src\assets\dics.png"
+                                src={dics}
                             ></img>
                             <div className="listeningDetails">
                                 <h3>{listening.title}</h3>

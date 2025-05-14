@@ -3,6 +3,7 @@ import { readData } from "../../firebaseconfig";
 import './readingTable.css';
 import WhiteLoadingIndicator from "../../loadingIndicator/whiteLoadingIndicator";
 import AnswerHistory from "../../answerHistory/answerHistory";
+import book from '../../assets/book.png';
 
 function ReadingTable({students = [] }) {
     const [readingList, setReadingList] = useState([]);
@@ -129,7 +130,7 @@ function ReadingTable({students = [] }) {
                     <div key={index} className="readingItem">
                         <div className="readingHeader">
                             <img
-                                src="src\assets\book.png"
+                                src={book}
                             ></img>
                             <div className="readingDetails">
                                 <h3>{reading.title}</h3>

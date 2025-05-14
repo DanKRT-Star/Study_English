@@ -6,6 +6,7 @@ import AnswerUtils from "../answerUtils/answerUtils.jsx";
 import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import LoadingIndicator from '../loadingIndicator/LoadingIndicator.jsx';
+import dics from '../assets/dics.png'
 
 
 function AddListening() {
@@ -152,7 +153,7 @@ function AddListening() {
             {listeningList.map((listening, index) => (
                     <div className="listeningCard" key={index}>
                         <div className="picture">
-                            <img src="src\assets\dics.png" alt=""/>
+                            <img src={dics} alt=""/>
                         </div>
                         <div className="content">
                             <div className="title">
