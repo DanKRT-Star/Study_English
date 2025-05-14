@@ -152,7 +152,7 @@ function AddListening() {
             {listeningList.map((listening, index) => (
                     <div className="listeningCard" key={index}>
                         <div className="picture">
-                            <img src="src\assets\dics.png" alt=""/>
+                            <img src="..\assets\dics.png" alt=""/>
                         </div>
                         <div className="content">
                             <div className="title">
