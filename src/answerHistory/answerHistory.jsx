@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { readData } from "../firebaseconfig";
 import './answerHistory.css';
-import LoadingIndicator from "../loadingIndicator/LoadingIndicator";
+import LoadingIndicator from "../loadingIndicator/loadingIndicator";
 
 function AnswerHistory({student, typeForm, date, time, onClose}) {
     const [answerHistory, setAnswerHistory] = useState([]);
