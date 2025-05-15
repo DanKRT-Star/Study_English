@@ -10,6 +10,14 @@ function AnswerUtils({typeForm, isPlayModalOpen, currentPlay, user, elapsedTime,
     const multipleRef = useRef(null);
 
     useEffect(() => {
+        const manage = document.querySelector('.manageTestContainer');
+        const answer = document.querySelector('.answerSheetContainer');
+        if (manage && answer) {
+            answer.style.marginTop = manage.offsetHeight + 10 + "px";
+        }
+    }, []);
+
+    useEffect(() => {
         if (isPlayModalOpen) {
         const start = Date.now();
         const interval = setInterval(() => {
@@ -27,15 +35,13 @@ function AnswerUtils({typeForm, isPlayModalOpen, currentPlay, user, elapsedTime,
     };
 
     const handleScrollToQuestion = (type, index) => {
-        const container = document.querySelector(
-        type === "essay" ? ".essayContainer" : ".multipleContainer"
-        );
+        const container = document.querySelector(".answerSheetContainer");
         if (!container) return;
 
         const allQuestions = container.querySelectorAll(".questionItem");
         const target = allQuestions[index];
         if (target) {
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
         }
     };
 
@@ -143,7 +149,7 @@ function AnswerUtils({typeForm, isPlayModalOpen, currentPlay, user, elapsedTime,
                     {typeForm === "scene" ? (
                         <iframe
                         width="100%"
-                        height="50%"
+                        height="100%"
                         src={`https://www.youtube.com/embed/${currentPlay.youtubeId}`}
                         title={currentPlay.title}
                         frameBorder="0"
@@ -153,7 +159,7 @@ function AnswerUtils({typeForm, isPlayModalOpen, currentPlay, user, elapsedTime,
                         <>
                             <h2>{currentPlay.title}</h2>
                             <div className="readingContent">
-                                <p>{currentPlay.content}</p>
+                                <pre>{currentPlay.content}</pre>
                             </div>
                         </>
                     ) : (
@@ -212,31 +218,32 @@ function AnswerUtils({typeForm, isPlayModalOpen, currentPlay, user, elapsedTime,
                             </div>
                         </div>
                     </div>
+                    <div className="answerSheetContainer">
+                        <div className="multipleContainer">
+                            <h3>Câu hỏi trắc nghiệm</h3>
+                                {multipleQuestions.map((q, index) => (
+                                <div className="questionItem" key={q.key}>
+                                    <p>Câu {index + 1}: {q.question}</p>
+                                    {q.options.map((opt, i) => (
+                                        <div className="option" key={i}>
+                                            <input className="ratio" type="radio" id={`${q.key}_opt_${i}`} name={q.key} />
+                                            <label htmlFor={`${q.key}_opt_${i}`}>{opt.text || opt}</label>
+                                        </div>
+                                    ))}
+                                </div>
+                            ))}
+                        </div>
 
-                    <div className="multipleContainer">
-                        <h3>Câu hỏi trắc nghiệm</h3>
-                            {multipleQuestions.map((q, index) => (
-                            <div className="questionItem" key={q.key}>
-                                <p>Câu {index + 1}: {q.question}</p>
-                                {q.options.map((opt, i) => (
-                                    <div className="option" key={i}>
-                                        <input className="ratio" type="radio" id={`${q.key}_opt_${i}`} name={q.key} />
-                                        <label htmlFor={`${q.key}_opt_${i}`}>{opt.text || opt}</label>
-                                    </div>
-                                ))}
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="essayContainer">
-                        <h3>Câu hỏi tự luận</h3>
-                        {essayQuestions.map((q, index) => (
-                            <div className="questionItem" key={q.key}>
-                                <p><b>Câu {index + 1}: {q.question}</b> </p>
-                                <textarea placeholder="Nhập câu trả lời..." rows="3" />
-                            </div>
-                        ))}
-                    </div>
+                        <div className="essayContainer">
+                            <h3>Câu hỏi tự luận</h3>
+                            {essayQuestions.map((q, index) => (
+                                <div className="questionItem" key={q.key}>
+                                    <p><b>Câu {index + 1}: {q.question}</b> </p>
+                                    <textarea placeholder="Nhập câu trả lời..." rows="3" />
+                                </div>
+                            ))}
+                        </div>            
+                    </div>                
                 </div>
             </div>
         </div>

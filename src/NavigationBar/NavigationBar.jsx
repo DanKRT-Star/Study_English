@@ -7,15 +7,14 @@ import { saveData } from '../firebaseconfig';
 function NavigationBar() {
     const navigate = useNavigate();
     const location = useLocation();
-    const [isOpen, setIsOpen] = useState(false);
     const { user } = useAuth();
 
-    const Open = () => {
-        const NavigationBar = document.querySelector('.NavContainer');
-        if (!NavigationBar) return;
+    const handleMouseEnter = () => {
+        document.querySelector('.NavContainer').classList.add('hovered');
+    };
 
-        NavigationBar.classList.toggle("expand");
-        setIsOpen(prev => !prev);
+    const handleMouseLeave = () => {
+        document.querySelector('.NavContainer').classList.remove('hovered');
     };
 
     const changePage = (page) => {
@@ -44,40 +43,37 @@ function NavigationBar() {
 
     return (
         <div className='NavContainer'>
-            <button className='Toggle' onClick={Open}>
-                <i className='bx bxs-grid'></i> 
-            </button>
             
             <div className='List'>
                 <ul>
-                    <li className='Item homepage' onClick={() => changePage('homepage')}>
-                        <i className='bx bxs-home'></i>
+                    <li className='Item homepage' onClick={() => changePage('homepage')} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                        <div className='icon'><i className='bx bxs-home'></i></div>
                         <span>Home</span>
                     </li>
-                    <li className='Item scene' onClick={() => changePage('scene')}>
-                        <i className='bx bxs-movie-play'></i>
+                    <li className='Item scene' onClick={() => changePage('scene')} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                        <div className="icon"><i className='bx bxs-movie-play'></i></div>
                         <span>Scene</span>
                     </li>
 
-                    <li className='Item listening' onClick={() => changePage('listening')}>
-                        <i className='bx bxs-playlist'></i>
+                    <li className='Item listening' onClick={() => changePage('listening')} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                        <div className="icon"><i className='bx bxs-playlist'></i></div>
                         <span>Listening</span>
                     </li>
 
-                    <li className='Item reading' onClick={() => changePage('reading')}>
-                        <i className='bx bx-book-bookmark'></i>
+                    <li className='Item reading' onClick={() => changePage('reading')} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                        <div className="icon"><i className='bx bx-book-bookmark'></i></div>
                         <span>Reading</span>
                     </li>
                     
                     {user?.isTeacher ? (
-                        <li className='Item studentManagement' onClick={() => changePage('studentManagement')}>
-                            <i className='bx bxs-contact'></i>
+                        <li className='Item studentManagement' onClick={() => changePage('studentManagement')} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                            <div className="icon"><i className='bx bxs-contact'></i></div>
                             <span>Student Manage</span>
                         </li>
                     ) : null} 
 
-                    <li className='Item logout' onClick={handleLogout}>
-                        <i className='bx bx-log-out'></i>
+                    <li className='Item logout' onClick={handleLogout} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                        <div className="icon"><i className='bx bx-log-out'></i></div>
                         <span>Log out</span>
                     </li>
                 </ul>

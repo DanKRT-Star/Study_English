@@ -151,13 +151,13 @@ function AddListening() {
         <>
             <div className="listeningItems">
             {listeningList.map((listening, index) => (
-                    <div className="listeningCard" key={index}>
+                    <div className="listeningCard" key={index} >
                         <div className="picture">
                             <img src={dics} alt=""/>
                         </div>
                         <div className="content">
                             <div className="title">
-                                <h3>{listening.title}</h3><span><p>{listening.time}</p></span>
+                                <h3 title={listening.title}>{listening.title}</h3><span><p>{listening.time}</p></span>
                             </div>
                             <div className="manage">
                                 {user?.isTeacher ? (

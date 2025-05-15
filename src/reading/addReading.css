@@ -14,6 +14,19 @@
     align-items: end;
     position: relative;
     width: 100%;
+    z-index: 3;
+}
+
+.readingCard .content .title h3 {
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    width: 50%; 
+    display: inline-block;
+    position: relative;
+    cursor: default;
+    text-align: start;
+
 }
 
 .readingCard:hover .picture {
@@ -56,21 +69,7 @@
 
 .readingCard .title {
     margin-bottom: 10px;
-    width: 50%;
-}
-
-.readingCard .title h3 {
-    font-size: 18px;
-    font-weight: bold;
-    color: #000;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    text-align: left;
-    height: fit-content;
-    word-wrap: break-word;
-    overflow-wrap: break-word; 
-    white-space: normal; 
+    width: 100%; 
 }
 
 .readingCard .title p {
@@ -95,7 +94,7 @@
 }
 
 .readingCard .manage button:hover {
-    color: #000;
+    color: #444; /* Gợi ý: đổi sang màu khác để có hiệu ứng hover */
 }
 
 

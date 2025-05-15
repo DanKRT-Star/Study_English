@@ -108,7 +108,7 @@ function StudentManagement() {
         <>
             <NavigationBar></NavigationBar>
             <div className="studentManagementContainer">
-                <div className={`leftColumn ${isLeftColumnVisible ? 'visible' : 'hidden'}`}>
+                <div className={`leftColumn ${isLeftColumnVisible ? 'visible' : ''}`}>
                     <div className="studentList">
                         <h2>Students list</h2>
                         <table className="studentTable">
@@ -145,20 +145,23 @@ function StudentManagement() {
                         </table>
                     </div>
                 </div>
+
                 <div className="rightColumn">
                     <div className="topSection">
                         <div className="tab reading active" onClick={() => handleTabClick('reading')}>reading</div>
                         <div className="tab listening" onClick={() => handleTabClick('listening')}>listening</div>
                         <div className="tab scene" onClick={() => handleTabClick('scene')}>scene</div>    
                     </div>
+
                     <div className="bottomSection">
                         {activeTab === 'scene' && <SceneTable students={filteredStudents} />}
                         {activeTab === 'reading' && <ReadingTable students={filteredStudents} />}
                         {activeTab === 'listening' && <ListeningTable students={filteredStudents} />}
                     </div>
                 </div>
+
             </div>
-            <button className="toggleLeftColumnBtn" onClick={handleToggleLeftColumn}>
+            <button className={`toggleLeftColumnBtn ${isLeftColumnVisible ? '✖' : '☰'}`} onClick={handleToggleLeftColumn}>
                 {isLeftColumnVisible ? '✖' : '☰'}
             </button>
         </>

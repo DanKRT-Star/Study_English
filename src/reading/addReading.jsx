@@ -48,7 +48,7 @@ function AddReading() {
 
         const formattedPictures = {};
         pictures.forEach((picture, index) => {
-          formattedPictures[`picture${index + 1}`] = picture;
+            formattedPictures[`picture${index + 1}`] = picture;
         });
 
         const formattedQuestions = {};
@@ -72,15 +72,16 @@ function AddReading() {
                 formattedQuestions[questionTypeKey][questionIndex].correctAnswers = q.correctAnswers;
             }
         });
-      
 
         const readingData = {
             title,
             time: formattedTime,
-            content: readingContent,
+            content: readingContent, 
             ...formattedQuestions,
             pictures: formattedPictures,
         };
+
+        console.log(JSON.stringify(readingContent));
 
         try {
             if (editingReadingTitle && editingReadingTitle !== title) {
@@ -160,15 +161,15 @@ function AddReading() {
 
     return (
         <>
-            <div className="readingItems">
+            <div className="readingItems" >
                 {readingList.map((reading, index) => (
-                    <div className="readingCard" key={index}>
+                    <div className="readingCard" key={index} >
                         <div className="picture">
-                            <img src={book} alt=""/>
+                            <img src={book} alt={reading.title}/>
                         </div>
                         <div className="content">
                             <div className="title">
-                                <h3>{reading.title}</h3><span><p>{reading.time}</p></span>
+                                <h3 title={reading.title}>{reading.title}</h3><span><p>{reading.time}</p></span>
                             </div>
                             <div className="manage">
                                 {user?.isTeacher ? (
@@ -194,8 +195,8 @@ function AddReading() {
                         handleConfirm={handleConfirm}
                         setIsExpand={setIsExpand}
                         isExpand={isExpand}
-                        setYoutubeLink={setReadingContent}
-                        youtubeLink={readingContent}
+                        readingContent={readingContent}
+                        setReadingContent={setReadingContent}
                     />  
                 </> 
             )} 

@@ -17,12 +17,14 @@
     width: 100%;
     height: 100%;
     position: relative;
+    overflow:hidden
 }
 
-.leftColumn, .rightColumn {
+.playModalLayout .leftColumn,.playModalLayout .rightColumn {
     flex: 1;
     height: 100%;
     padding: 10px;
+    min-width: 350px;
 
 }
 
@@ -50,14 +52,6 @@
     flex-direction: column;
     align-items: start;
     justify-content: start;
-}
-
-.leftColumn .readingContent p {
-    text-align: start;
-    width: 100%;
-    word-wrap: break-word;
-    overflow-wrap: break-word; 
-    white-space: normal; 
 }
 
 .leftColumn audio {
@@ -90,15 +84,18 @@
     align-items: start;
     justify-content: start;
     gap: 20px;
-    overflow: auto;
+    overflow: hidden;
+    position: relative;
 }
 
 .rightColumn .manageTestContainer {
     width: 100%;
-    height: 30%;
     height: fit-content;
     display: flex;
     gap: 10px;
+    position: absolute;
+    background: var(--background-color);
+    z-index: 2;
 }
 
 .rightColumn .manageTestContainer .submitContainer {
@@ -128,6 +125,7 @@
     color: var(--background-color);
     font-weight: bold;
     border-radius: 10px;
+    height: 100%;
 }
 
 .rightColumn .manageTestContainer .questionNavContainer {
@@ -145,6 +143,8 @@
 .questionNavContainer .essay {
     display: flex;
     gap: 5px;
+    flex-wrap: wrap;
+    overflow:visible;
 }
 
 .rightColumn h3 {
@@ -174,9 +174,13 @@
     color: #fff;
 }
 
+.rightColumn .answerSheetContainer {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
 
-
-.rightColumn .multipleContainer {
+.rightColumn .answerSheetContainer .multipleContainer {
     height: fit-content;
     width: 100%;
     display: flex;
@@ -185,9 +189,10 @@
     justify-content: start;
     gap: 20px;
     padding: 10px;
+
 }
 
-.rightColumn .multipleContainer .questionItem {
+.rightColumn .answerSheetContainer .multipleContainer .questionItem {
     width: 100%;
     height: fit-content;
     display: flex;
@@ -200,7 +205,7 @@
     border-radius: 15px;
 }
 
-.rightColumn .multipleContainer .questionItem p {
+.rightColumn .answerSheetContainer .multipleContainer .questionItem p {
     width: 100%;
     border-bottom: solid 3px #fff;
     text-align: start;
@@ -208,7 +213,7 @@
     font-weight: bold;
 }
 
-.rightColumn .multipleContainer .questionItem .option {
+.rightColumn .answerSheetContainer .multipleContainer .questionItem .option {
     width: 100%;
     display: flex;
     align-items: center;
@@ -218,7 +223,7 @@
 }
 
 
-.rightColumn .multipleContainer .questionItem .option .ratio {
+.rightColumn .answerSheetContainer .multipleContainer .questionItem .option .ratio {
     background-color: var(--background-color);
     appearance: none;
     display: flex;
@@ -226,7 +231,7 @@
     justify-content: center;
     padding: 0;
     margin: 0;
-    width: 21px;
+    min-width: 21px;
     aspect-ratio: 1/1;
     border: 2px solid #fff;
     border-radius: 50%;
@@ -235,16 +240,17 @@
     position: relative;
 }
 
-.rightColumn .multipleContainer .questionItem .option label {
+.rightColumn .answerSheetContainer .multipleContainer .questionItem .option label {
     color: #fff;
     font: bold;
+    text-align: start;
 }
 
-.rightColumn .multipleContainer .questionItem .option .ratio:checked {
+.rightColumn .answerSheetContainer .multipleContainer .questionItem .option .ratio:checked {
     background-color: var(--background-color);
 }
 
-.rightColumn .multipleContainer .questionItem .option .ratio:checked::before {
+.rightColumn .answerSheetContainer .multipleContainer .questionItem .option .ratio:checked::before {
     content: '';
     position: absolute;
     width: 8px;
@@ -253,7 +259,7 @@
     border-radius: 50%;
 }
 
-.rightColumn .essayContainer {
+.rightColumn .answerSheetContainer .essayContainer {
     height: fit-content;
     width: 100%;
     display: flex;
@@ -264,7 +270,7 @@
     padding: 10px;
 }
   
-.rightColumn .essayContainer .questionItem {
+.rightColumn .answerSheetContainer .essayContainer .questionItem {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -273,11 +279,11 @@
     justify-content: center;
 }
 
-.rightColumn .essayContainer .questionItem p {
+.rightColumn .answerSheetContainer .essayContainer .questionItem p {
     color: #fff;
 }
 
-.rightColumn .essayContainer .questionItem textarea {
+.rightColumn .answerSheetContainer .essayContainer .questionItem textarea {
     width: 100%;
     padding: 8px;
     border-radius: 6px;
@@ -291,10 +297,31 @@
     min-height: 100px;
 }
 
-.rightColumn .essayContainer .questionItem label {
+.rightColumn .answerSheetContainer .essayContainer .questionItem label {
     color: black;
     font-size: 16px;
     margin-left: 6px;
     cursor: pointer;
+}
+
+@media (max-width: 714px) {
+    .leftColumn, .rightColumn  {
+        height: 50%;    }
+}
+
+.readingContent {
+  white-space: pre-wrap; 
+  word-wrap: break-word; 
+  color: black;
+  width: 100%;
+  text-align: start;
+  padding: 0;
+}
+
+.readingContent pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: inherit;   
+  font-size: inherit; 
 }
 

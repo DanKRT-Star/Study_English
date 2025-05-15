@@ -1,9 +1,7 @@
-
 .sceneListContainer {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;
     height: fit-content;
     justify-content: start;
     align-items: start;
@@ -16,14 +14,25 @@
     flex-direction: column;
     width: 100%;
     height: fit-content;
-    border-radius: 5px;
+    border-radius: 15px;
+    background: var(--background-color);
     overflow: auto;
-    max-height: 900px;
+    max-height: 80%;
     justify-content: start;
     align-items: center;
     gap: 10px;
     padding: 10px;
-    border-radius: 15px;
+}
+
+.sceneItem:hover {
+    background: rgb(120, 176, 166);
+}
+
+.sceneItem img {
+    width: 20%;
+    min-width: 100px;
+    aspect-ratio: 4/3;
+    border-radius: 5px;
 }
 
 .sceneItem .sceneHeader {
@@ -37,16 +46,6 @@
     gap: 10px;
 }
 
-.sceneItem:hover {
-    background: rgb(120, 176, 166);
-}
-
-.sceneItem  img {
-    width: 17%;
-    aspect-ratio: 4/3;
-    border-radius: 5px;
-}
-
 .sceneItem .sceneDetails {
     display: flex;
     flex-direction: column;
@@ -56,20 +55,9 @@
     align-items: start;
 }
 
-.sceneItem .sceneDetails .userAmount {
-    display: flex;
-    width: fit-content;
-    height: fit-content;
-    justify-content: start;
-    align-items: center;
-    background: white;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 20px;
-    color: var(--background-color);
-}
-
-.sceneItem .sceneDetails button {
+.sceneItem .sceneDetails button,
+.historyTable .submissionTextItem button,
+.historyTable button {
     display: flex;
     height: fit-content;
     width: fit-content;
@@ -79,13 +67,15 @@
     border-radius: 20px;
     border: none;
     outline: none;
-    padding: 0px;
+    padding: 0;
     cursor: pointer;
     font-size: 15px;
     gap: 2px;
 }
 
-.sceneItem .sceneDetails button i{
+.sceneItem .sceneDetails button i,
+.historyTable .submissionTextItem button i,
+.historyTable button i {
     color: white;
     font-size: 25px;
     width: fit-content;
@@ -94,10 +84,13 @@
     transition: all 0.3s ease-in-out;
 }
 
-.sceneItem .sceneDetails button:hover i {
+.sceneItem .sceneDetails button:hover i,
+.historyTable .submissionTextItem button:hover i,
+.historyTable button:hover i {
     color: var(--background-color);
     background: white;
     border-radius: 2px;
+    transform: scale(1.2);
 }
 
 .sceneItem h3 {
@@ -105,11 +98,13 @@
     padding: 0;
     color: white;
     font-weight: bold;
-    text-align: center;
+    text-align: start;
     width: fit-content;
-    height: fit-content;
+    height: 100%;
+    white-space: normal;
 }
 
+/* History Table */
 .historyTable {
     display: flex;
     flex-direction: column;
@@ -118,7 +113,6 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    border-collapse: collapse;
     border-radius: 8px;
     border-collapse: collapse;
     transform-origin: top;
@@ -126,12 +120,32 @@
 }
 
 @keyframes slidedown {
-    0% {
-        transform: scaleY(0);
-    }
-    100% {
-        transform: scaleY(1);
-    }
+    0% { transform: scaleY(0); }
+    100% { transform: scaleY(1); }
+}
+
+.historyTable .submissionTextItem {
+    width: 100%;
+    display: flex;
+    height: fit-content;
+    padding: 10px;
+    border: solid 2px white;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.submissionTextItem .info {
+    width: 100%;
+    height: fit-content;
+    text-align: start;
+}
+
+.historyTable p,
+.submissionTextItem .info p {
+    color: white;
+    width: 100%;
+    white-space: normal; 
 }
 
 .historyTable table {
@@ -140,10 +154,7 @@
     border-radius: 5px;
     overflow: hidden;
     border-collapse: collapse;
-
 }
-
-
 
 .historyTable th,
 .historyTable td {
@@ -156,7 +167,6 @@
     font-weight: bold;
     color: var(--background-color);
 }
-
 
 .historyTable td {
     font-size: 14px;
@@ -176,18 +186,4 @@
     outline: none;
     margin-left: 50%;
     translate: -50%;
-}
-
-.historyTable button i {
-    display: flex;
-    color: white;
-    font-size: 25px;
-    width: fit-content;
-    height: fit-content;
-    padding: 0;
-    transition: all 0.3s ease-in-out;
-}
-
-.historyTable button:hover i {
-    transform: scale(1.2);
 }

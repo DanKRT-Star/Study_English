@@ -5,12 +5,13 @@ import WhiteLoadingIndicator from "../../loadingIndicator/whiteLoadingIndicator"
 import AnswerHistory from "../../answerHistory/answerHistory";
 import dics from '../../assets/dics.png';
 
-function ListeningTable({students}) {
+function ListeningTable({ students }) {
     const [listeningList, setListeningList] = useState([]);
     const [selectedListening, setSelectedListening] = useState(null);
     const [historyData, setHistoryData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [selectedSubmission, setSelectedSubmission] = useState(null);
+    const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 475);
 
     useEffect(() => {
         setIsLoading(true);
@@ -24,6 +25,18 @@ function ListeningTable({students}) {
         };
 
         fetchListenings();
+    }, []);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobileView(window.innerWidth <= 475);
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
     }, []);
 
     useEffect(() => {
@@ -107,13 +120,84 @@ function ListeningTable({students}) {
         }
     };
 
-        const handleViewSubmission = (submission) => {
+    const handleViewSubmission = (submission) => {
         setSelectedSubmission(submission);
         console.log("Selected Submission:", submission);
     };
     
     const handleCloseModal = () => {
         setSelectedSubmission(null);
+    };
+
+    const renderTextView = () => {
+        return historyData.length === 0 ? (
+            <p>No submission data</p>
+        ) : (
+            historyData.map((entry, index) => {
+                const completionPercentage = calculateCompletionPercentage(
+                    entry.multipleAnswers || [],
+                    entry.essayAnswers || [],
+                    entry.listening
+                );
+                return (
+                    <div key={index} className="submissionTextItem">
+                        <div className="info">
+                            <p><strong>Date:</strong> {entry.date}</p>
+                            <p><strong>Time:</strong> {entry.time}</p>
+                            <p><strong>Student:</strong> {entry.user}</p>
+                            <p><strong>Completed:</strong> {completionPercentage}%</p>
+                        </div>
+                        <button onClick={() => handleViewSubmission(entry)}>
+                            <i className="bx bx-window-open"></i> 
+                        </button>
+                    </div>
+                );
+            })
+        );
+    };
+
+    const renderTableView = () => {
+        return (
+            <table>
+                <thead>
+                    <tr>
+                        <th>Submit date</th>
+                        <th>Submit time</th>
+                        <th>Submit student</th>
+                        <th>Completed</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {historyData.length === 0 ? (
+                        <tr>
+                            <td colSpan="5">No submission data</td>
+                        </tr>
+                    ) : (
+                        historyData.map((entry, index) => {
+                            const completionPercentage = calculateCompletionPercentage(
+                                entry.multipleAnswers || [],
+                                entry.essayAnswers || [],
+                                entry.listening
+                            );
+                            return (
+                                <tr key={index}>
+                                    <td>{entry.date}</td>
+                                    <td>{entry.time}</td>
+                                    <td>{entry.user}</td>
+                                    <td>{completionPercentage}%</td>
+                                    <td>
+                                        <button onClick={() => handleViewSubmission(entry)}>
+                                            <i className="bx bx-window-open"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            );
+                        })
+                    )}
+                </tbody>
+            </table>
+        );
     };
 
     if (isLoading) {
@@ -126,77 +210,37 @@ function ListeningTable({students}) {
 
     return (
         <div className="listeningListContainer">
-                {listeningList.map((listening, index) => (
-                    <div key={index} className="listeningItem">
-                        <div className="listeningHeader">
-                            <img
-                                src={dics}
-                            ></img>
-                            <div className="listeningDetails">
-                                <h3>{listening.title}</h3>
-                                <p>{listening.time}</p>
-                                <button onClick={() => handleListeningClick(listening)}>
-                                    <i className='bx bx-filter' ></i>
-                                    {students.length > 0 ? `Filtered ${students.length}` : 'No filter'}
-                                </button>
-                            </div>
+            {listeningList.map((listening, index) => (
+                <div key={index} className="listeningItem">
+                    <div className="listeningHeader">
+                        <img src={dics} alt="Listening Icon" />
+                        <div className="listeningDetails">
+                            <h3>{listening.title}</h3>
+                            <p>{listening.time}</p>
+                            <button onClick={() => handleListeningClick(listening)}>
+                                <i className="bx bx-filter"></i>
+                                {students.length > 0 ? `Filtered ${students.length}` : "No filter"}
+                            </button>
                         </div>
-                        {selectedListening === listening && (
-                            <div className="historyTable">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Submit date</th>
-                                            <th>Submit time</th>
-                                            <th>Submit student</th>
-                                            <th>Completed</th>
-                                            <th>Details</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {historyData.length === 0 ? (
-                                            <tr>
-                                                <td colSpan="5">No submission data</td>
-                                            </tr>
-                                        ) : (
-                                            historyData.map((entry, index) => {
-                                                const completionPercentage = calculateCompletionPercentage(
-                                                    entry.multipleAnswers || [],
-                                                    entry.essayAnswers || [],
-                                                    entry.listening
-                                                );
-                                                return (
-                                                    <tr key={index}>
-                                                        <td>{entry.date}</td>
-                                                        <td>{entry.time}</td>
-                                                        <td>{entry.user}</td>
-                                                        <td>{completionPercentage}%</td>
-                                                        <td>
-                                                            <button onClick={() => handleViewSubmission(entry)}>
-                                                                <i className='bx bx-window-open'></i>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                );
-                                            })
-                                        )}
-                                    </tbody>
-                                </table>
-                            </div>
-                        )}
                     </div>
-                ))}
+                    {selectedListening === listening && (
+                        <div className="historyTable">
+                            {isMobileView ? renderTextView() : renderTableView()}
+                        </div>
+                    )}
+                </div>
+            ))}
 
-                {selectedSubmission && (
-                    <AnswerHistory
-                        student={selectedSubmission.user}
-                        typeForm="listening"
-                        date={selectedSubmission.date}
-                        time={selectedSubmission.time}
-                        onClose={handleCloseModal}
-                    />
-                )}
-            </div>
+            {selectedSubmission && (
+                <AnswerHistory
+                    student={selectedSubmission.user}
+                    typeForm="listening"
+                    date={selectedSubmission.date}
+                    time={selectedSubmission.time}
+                    onClose={handleCloseModal}
+                />
+            )}
+        </div>
     );
 }
 

@@ -107,7 +107,7 @@ function AnswerHistory({student, typeForm, date, time, onClose}) {
                                 {answerHistory?.essayAnswers?.map((answer, index) => (
                                     <div key={index} className="questionItem">
                                         <h3>Question {index + 1}: {test?.essayQuestion?.[`question${index + 1}`]?.question || 'No question content available'}</h3>
-                                        <p>{answer.answer || 'No answer provided'}</p>
+                                        <p>{answer.answer || " "}</p>
                                     </div>
                                 ))}
                             </div>

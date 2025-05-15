@@ -187,7 +187,7 @@ function AddScene() {
         <>
             <div className="sceneItems">
                 {sceneList.map((scene, index) => (
-                    <div className="sceneCard" key={index}>
+                    <div className="sceneCard" key={index} alt={scene.title}>
                         <div className="picture">
                             <img
                                 src={`https://img.youtube.com/vi/${scene.youtubeId}/hqdefault.jpg`}
@@ -197,7 +197,7 @@ function AddScene() {
                             ></img>
                         </div>
                         <div className="content">
-                            <div className="title">
+                            <div className="title" >
                                 <h3>{scene.title}</h3><span><p>{scene.time}</p></span>
                             </div>
 

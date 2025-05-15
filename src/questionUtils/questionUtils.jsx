@@ -3,7 +3,7 @@ import { uploadFileToCloudinary } from "../cloudinaryUtils.jsx";
 
 
 
-function QuestionUtils({ typeForm, questions, setQuestions, youtubeLink, setYoutubeLink, handleConfirm, setIsExpand, isExpand,  audioLink, setAudioLink, pictures = [], setPictures }) {
+function QuestionUtils({ typeForm, questions, setQuestions, youtubeLink, setYoutubeLink, handleConfirm, setIsExpand, isExpand,  audioLink, setAudioLink, pictures = [], setPictures, readingContent, setReadingContent }) {
 
   const handlePictureUpload = async (e) => {
     const file = e.target.files[0];
@@ -157,9 +157,13 @@ function QuestionUtils({ typeForm, questions, setQuestions, youtubeLink, setYout
         return (
           <>
             <p>Title:</p>
-            <input type="text" id="readingTitle" placeholder="Title" maxLength={30}/>
+            <input type="text" id="readingTitle" placeholder="Title" maxLength={30} />
             <p>Content:</p>
-            <textarea id="readingContent" placeholder="Content" value={youtubeLink} onChange={(e) => setYoutubeLink(e.target.value)} ></textarea>
+            <textarea
+              value={readingContent}
+              onChange={e => setReadingContent(e.target.value)}
+              rows={6}
+            />
           </>
         );  
       case "listening":
@@ -268,10 +272,10 @@ function QuestionUtils({ typeForm, questions, setQuestions, youtubeLink, setYout
 
       <div className={`addBtnContainer ${isExpand ? 'expand' : ''}`}>
         <div className={`button confirmAdd`} onClick={handleConfirm}>
-          <i className="bx bx-check"></i>
+            Apply
         </div>
-        <div className={`button addToogle`} onClick={handleExpand}>
-          <i className={`bx bx-plus ${isExpand ? 'rotate' : ''}`}></i>
+        <div className={isExpand ? 'button addToggle close' : 'button addToggle open'} onClick={handleExpand}>
+            {isExpand ? 'Close' : 'Open'}
         </div>
       </div>
     </>

@@ -11,6 +11,7 @@
   background: rgba(0, 0, 0, 0.5);
   z-index: 4;
 
+
 }
 
 .answerHistoryContainer h3 {
@@ -20,6 +21,7 @@
 }
 
 .answerHistoryList {
+    min-width: 350px;
     width: 80%;
     height: fit-content;
     display: flex;
@@ -55,6 +57,16 @@
 
 }
 
+.answerHistoryList .Session.Info {
+    flex-wrap: wrap;
+}
+
+.answerHistoryList .Session.Info h3 {
+    white-space: nowrap;
+    width: fit-content;
+    height: fit-content;
+}
+
 .answerHistoryList .Session.Result {
     gap: 10px;
     align-items: start;
@@ -66,7 +78,7 @@
 .answerHistoryList .Session.Result .Multiple,
 .answerHistoryList .Session.Result .Essay {
   flex: 1;
-  min-width: 300px;
+  min-width: 50%;
   height: auto; 
   overflow-y: auto;
   display: flex;

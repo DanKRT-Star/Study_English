@@ -1,10 +1,8 @@
-
 .readingListContainer {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
-    height: fit-content;
     justify-content: start;
     align-items: start;
     gap: 10px;
@@ -16,14 +14,26 @@
     flex-direction: column;
     width: 100%;
     height: fit-content;
-    border-radius: 5px;
+    border-radius: 15px;
     overflow: auto;
-    max-height: 900px;
+    max-height: 80%;
     justify-content: start;
     align-items: center;
     gap: 10px;
     padding: 10px;
-    border-radius: 15px;
+    background: var(--background-color);
+}
+
+.readingItem:hover {
+    background: rgb(120, 176, 166);
+    cursor: pointer;
+}
+
+.readingItem img {
+    width: 10%;
+    min-width: 50px;
+    aspect-ratio: 3/4;
+    border-radius: 5px;
 }
 
 .readingItem .readingHeader {
@@ -37,17 +47,6 @@
     gap: 10px;
 }
 
-.readingItem:hover {
-    background: rgb(120, 176, 166);
-    cursor: pointer;
-}
-
-.readingItem  img {
-    width: 10%;
-    aspect-ratio: 3/4;
-    border-radius: 5px;
-}
-
 .readingItem .readingDetails {
     display: flex;
     flex-direction: column;
@@ -57,20 +56,24 @@
     align-items: start;
 }
 
-.readingItem .readingDetails .userAmount {
-    display: flex;
-    width: fit-content;
+.readingItem .readingDetails h3,
+.readingItem h3 {
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-weight: bold;
+    text-align: start;
+    width: 100%;
     height: fit-content;
-    justify-content: start;
-    align-items: center;
-    background: white;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 20px;
-    color: var(--background-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
 }
 
-.readingItem .readingDetails button {
+.readingItem .readingDetails button,
+.historyTable .submissionTextItem button,
+.historyTable button {
     display: flex;
     height: fit-content;
     width: fit-content;
@@ -80,35 +83,32 @@
     border-radius: 20px;
     border: none;
     outline: none;
-    padding: 0px;
+    padding: 0;
     cursor: pointer;
     font-size: 15px;
     gap: 2px;
+    margin: 0;
 }
 
-.readingItem .readingDetails button i{
+.readingItem .readingDetails button i,
+.historyTable .submissionTextItem button i,
+.historyTable button i {
     color: white;
     font-size: 25px;
     width: fit-content;
     height: fit-content;
     padding: 0;
     transition: all 0.3s ease-in-out;
+    display: flex;
 }
 
-.readingItem .readingDetails button:hover i {
+.readingItem .readingDetails button:hover i,
+.historyTable .submissionTextItem button:hover i,
+.historyTable button:hover i {
     color: var(--background-color);
     background: white;
     border-radius: 2px;
-}
-
-.readingItem h3 {
-    margin: 0;
-    padding: 0;
-    color: white;
-    font-weight: bold;
-    text-align: center;
-    width: fit-content;
-    height: fit-content;
+    transform: scale(1.2);
 }
 
 .historyTable {
@@ -119,7 +119,6 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    border-collapse: collapse;
     border-radius: 8px;
     border-collapse: collapse;
     transform-origin: top;
@@ -127,24 +126,29 @@
 }
 
 @keyframes slidedown {
-    0% {
-        transform: scaleY(0);
-    }
-    100% {
-        transform: scaleY(1);
-    }
+    0% { transform: scaleY(0); }
+    100% { transform: scaleY(1); }
 }
 
-.historyTable table {
+.historyTable .submissionTextItem {
     width: 100%;
+    display: flex;
     height: fit-content;
-    border-radius: 5px;
-    overflow: hidden;
-    border-collapse: collapse;
-
+    padding: 10px;
+    border: solid 2px white;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: space-between;
 }
 
-
+.submissionTextItem .info,
+.submissionTextItem .info p {
+    width: fit-content;
+    height: fit-content;
+    text-align: start;
+    color: white;
+    white-space: nowrap; 
+}
 
 .historyTable th,
 .historyTable td {
@@ -157,7 +161,6 @@
     font-weight: bold;
     color: var(--background-color);
 }
-
 
 .historyTable td {
     font-size: 14px;

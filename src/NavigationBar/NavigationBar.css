@@ -6,29 +6,15 @@
     justify-content: start;
     background-color: var(--background-color);
     position: absolute;
-    overflow: hidden;
     transition: all 0.3s ease;
     left: 0;
     gap: 10px;
-    z-index: 2;
-    border-right: solid 4px rgb(249, 248, 248);
+    padding-top: 10px;
+    z-index: 1;
 }
 
-.NavContainer.expand {
-    width: 250px;
-}
-
-.NavContainer .Toggle {
-    border: none;
-    outline: none;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--background-color);
-    background-color: white;
-    height: auto;
-    font-size: 35px;
+.NavContainer.hovered {
+    z-index: 4;
 }
 
 .NavContainer .List ul {
@@ -39,20 +25,14 @@
 
 .NavContainer .List ul li {
     transition: all ease 0.3s;
-}
-
-.NavContainer .List ul li:hover {
-    transform: translateX(5px);
+    padding: 5px;
+    
 }
 
 .NavContainer .List {
     width: 250px;
     align-items: center;
     margin-left: 35%;
-}
-
-.NavContainer.expand .List {
-        margin-left: 10%;
 }
 
 .NavContainer .List .Item {
@@ -64,33 +44,74 @@
     font-size: 20px;
     gap: 35px;
     transition: all ease 0.3s;
+    width: fit-content;
 }
 
-.NavContainer .List .Item i {
-    font-size: 25px;
+.List .Item:hover {
+    transform: translateX(5px);
+    background: rgb(249, 248, 248);
+    border-radius: 30px;
+    padding-left: 5px;
+    padding-right: 10px;
     width: fit-content;
-    height: fit-content;
-    
+    outline: solid 1px var(--background-color);
 }
 
 .NavContainer .List .Item span {
-    display: flex;
+    display: none;
     padding: 0;
     margin: 0;
-    justify-content: center;
+    width: fit-content;
+    height: fit-content;
     text-align: left;
     cursor: pointer;
     align-items: center;
 }
 
+.NavContainer .List .Item:hover .NavContainer {
+    z-index: 4;
+}
+
+
+.NavContainer .List .Item:hover span {
+    display: flex;
+    color: var(--background-color);
+    white-space: nowrap;
+    width: fit-content;
+    
+}
+
+.NavContainer .List .Item .icon {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+.NavContainer .List .Item .icon i{
+    font-size: 25px;
+}
+
+.NavContainer .List .Item:hover .icon i {
+    color: var(--background-color);
+}
+
 .Item.active {
     background: rgb(249, 248, 248);
     padding-left: 10px;
-    border-bottom-left-radius: 30px;
-    border-top-left-radius: 30px;
+    border-radius: 25px;
+    width: fit-content;
 }
 
-.Item.active i, .Item.active span {
+.Item.active:hover {
+    background: rgb(249, 248, 248);
+}
+
+.Item.active i {
+    color: var(--background-color);
+}
+
+.NavContainer .List .Item.active span {
     color: var(--background-color);
 }
 

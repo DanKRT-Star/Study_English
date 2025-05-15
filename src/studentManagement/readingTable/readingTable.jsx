@@ -11,6 +11,8 @@ function ReadingTable({students = [] }) {
     const [historyData, setHistoryData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [selectedSubmission, setSelectedSubmission] = useState(null);
+    const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 475);
+
 
     useEffect(() => {
         setIsLoading(true);
@@ -24,6 +26,18 @@ function ReadingTable({students = [] }) {
         };
 
         fetchReadings();
+    }, []);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobileView(window.innerWidth <= 475);
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
     }, []);
 
     useEffect(() => {
@@ -116,6 +130,78 @@ function ReadingTable({students = [] }) {
         setSelectedSubmission(null);
     };
 
+    const renderTextView = () => {
+        return historyData.length === 0 ? (
+            <p>No submission data</p>
+        ) : (
+            historyData.map((entry, index) => {
+                const completionPercentage = calculateCompletionPercentage(
+                    entry.multipleAnswers || [],
+                    entry.essayAnswers || [],
+                    entry.reading
+                );
+                return (
+                    <div key={index} className="submissionTextItem">
+                        <div className="info">
+                            <p><strong>Date:</strong> {entry.date}</p>
+                            <p><strong>Time:</strong> {entry.time}</p>
+                            <p><strong>Student:</strong> {entry.user}</p>
+                            <p><strong>Completed:</strong> {completionPercentage}%</p>
+                        </div>
+                        <button onClick={() => handleViewSubmission(entry)}>
+                            <i className="bx bx-window-open"></i> 
+                        </button>
+                    </div>
+                );
+            })
+        );
+    };
+
+    const renderTableView = () => {
+        return (
+            <table>
+                <thead>
+                    <tr>
+                        <th>Submit date</th>
+                        <th>Submit time</th>
+                        <th>Submit student</th>
+                        <th>Completed</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {historyData.length === 0 ? (
+                        <tr>
+                            <td colSpan="5">No submission data</td>
+                        </tr>
+                    ) : (
+                        historyData.map((entry, index) => {
+                            const completionPercentage = calculateCompletionPercentage(
+                                entry.multipleAnswers || [],
+                                entry.essayAnswers || [],
+                                entry.reading
+                            );
+                            return (
+                                <tr key={index}>
+                                    <td>{entry.date}</td>
+                                    <td>{entry.time}</td>
+                                    <td>{entry.user}</td>
+                                    <td>{completionPercentage}%</td>
+                                    <td>
+                                        <button onClick={() => handleViewSubmission(entry)}>
+                                            <i className="bx bx-window-open"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            );
+                        })
+                    )}
+                </tbody>
+            </table>
+        );
+    };
+
+
     if (isLoading) {
         return (
             <div className="loadingContainer">
@@ -143,45 +229,7 @@ function ReadingTable({students = [] }) {
                         </div>
                         {selectedReading === reading && (
                             <div className="historyTable">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Submit date</th>
-                                            <th>Submit time</th>
-                                            <th>Submit student</th>
-                                            <th>Completed</th>
-                                            <th>Details</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {historyData.length === 0 ? (
-                                            <tr>
-                                                <td colSpan="5">No submission data</td>
-                                            </tr>
-                                        ) : (
-                                            historyData.map((entry, index) => {
-                                                const completionPercentage = calculateCompletionPercentage(
-                                                    entry.multipleAnswers || [],
-                                                    entry.essayAnswers || [],
-                                                    entry.scene
-                                                );
-                                                return (
-                                                    <tr key={index}>
-                                                        <td>{entry.date}</td>
-                                                        <td>{entry.time}</td>
-                                                        <td>{entry.user}</td>
-                                                        <td>{completionPercentage}%</td>
-                                                        <td>
-                                                            <button onClick={() => handleViewSubmission(entry)}>
-                                                                <i class='bx bx-window-open'></i>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                );
-                                            })
-                                        )}
-                                    </tbody>
-                                </table>
+                                {isMobileView ? renderTextView() : renderTableView()}
                             </div>
                         )}
                     </div>

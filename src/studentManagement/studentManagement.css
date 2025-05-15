@@ -18,28 +18,14 @@
     height: 100%;
 }
 
-.studentManagementContainer .leftColumn.hidden {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 80%;
-    z-index: 10;
-    transform: translateX(-100%);
-    opacity: 0;
-    background: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
 .studentManagementContainer .leftColumn .studentList {
     width: 100%;
     height: 100%;
-    overflow-y: auto; /* Thêm cuộn dọc nếu nội dung vượt quá chiều cao */
+    overflow-y: auto;
 }
 
 .studentManagementContainer .leftColumn .studentList h2 {
     text-align: center;
-    font-size: 30px;
     margin: 0;
     padding: 10px 0;
     color: var(--background-color);
@@ -136,6 +122,8 @@
     gap: 5px;
     height: 100%;
     width: 100%;
+    z-index: 3;
+    overflow: hidden;
 }
 
 .studentManagementContainer .rightColumn .topSection {
@@ -143,6 +131,7 @@
     gap: 10px;
     width: 100%;
     height: fit-content;
+    flex-wrap: wrap;
 }
 
 .rightColumn .topSection .tab {
@@ -154,14 +143,7 @@
     color: white;
     font-weight: bold;
     filter: brightness(0.8);
-}
-
-.rightColumn .topSection h2 {
-    margin: 0;
-    padding: 0;
-    height: fit-content;
-    width: fit-content;
-    color: var(--background-color);
+    flex: 1;
 }
 
 .rightColumn .topSection .tab:hover {
@@ -184,50 +166,72 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    overflow: auto;
 }
 
 .toggleLeftColumnBtn {
     display: none;
 }
 
+@media (max-width: 768px) {
+    .studentManagementContainer {
+        padding: 0;
+        padding-left: 70px;
+        margin: 0;
+    }
+
+    .studentManagementContainer .rightColumn {
+        padding: 5px;
+        border-radius: 0;
+        gap: 10px;
+    }
+
+    .rightColumn .topSection .tab {
+        padding: 5px;
+    }
+
+    .rightColumn .bottomSection {
+        padding: 0;
+        border-radius: 0;
+        background: none;
+    }
+
+}
+
 @media (max-width: 989px) {
     .studentManagementContainer {
         position: relative;
-        padding: 0;
         height: 100%; 
     }
+
+    .studentManagementContainer .rightColumn {
+        flex: none;
+        overflow: hidden;
+    }
+
 
     .studentManagementContainer .leftColumn {
         position: absolute;
         top: 0;
-        left: 0;
-        height: 100%; 
-        width: 80%;
+        right: 0;
+        transform: translateX(100%);
         z-index: 10;
-        transform: translateX(-100%);
-        opacity: 0;
         background: white;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        visibility: hidden;
     }
 
     .studentManagementContainer .leftColumn.visible {
         transform: translateX(0);
-        opacity: 1;
-    }
-
-    .studentManagementContainer .rightColumn {
-        flex: 1;
-        height: 100%; /* Đảm bảo chiều cao đầy đủ */
+        visibility: visible;
     }
 
     .toggleLeftColumnBtn {
         display: flex;
         position: fixed;
-        bottom: 20px;
-        left: 20px;
+        bottom: 10px;
+        left: 10px;
         z-index: 20;
-        background: var(--background-color);
-        color: white;
         border: none;
         border-radius: 50%;
         width: 50px;
@@ -236,16 +240,19 @@
         align-items: center;
         cursor: pointer;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s ease;
+        transition: all 0.3s ease;
+    }
+
+    .toggleLeftColumnBtn {
+        background: white;
+        color: var(--background-color);
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center ;
     }
 
     .toggleLeftColumnBtn:hover {
         transform: scale(1.1);
-    }
-}
-
-@media (max-width: 768px) {
-    .studentManagementContainer {
-        margin-left: 70px;
     }
 }

@@ -23,21 +23,22 @@
     justify-content: center;
     transition: all 0.3s ease;
     cursor: pointer;
+    font-size: 15px;
 }
 
-.button.addToogle i {
-    font-size: 25px;
-    transition: all 0.3s ease;
+.addBtnContainer .button.addToggle.close {
+    background: var(--third-color);
 }
 
+.addBtnContainer .button.confirmAdd {
+    background: var(--primary-color);
+}
+
+.addBtnContainer .button.addToggle.close:hover,
 .addBtnContainer .button:hover {
     background-color: white;
     color: var(--background-color);
     outline: solid 3px var(--background-color);
-}
-
-.button.addToogle i.rotate {
-    transform: rotateZ(45deg);
 }
 
 .addBtnContainer.expand {
@@ -315,3 +316,4 @@ audio {
         padding: 10px;
     }    
 }
+
