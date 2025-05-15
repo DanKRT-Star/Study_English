@@ -230,6 +230,8 @@ function AddScene() {
                         handleConfirm={handleConfirm}
                         setIsExpand={setIsExpand}
                         isExpand={isExpand}
+                        setPictures={setPictures}
+                        pictures={pictures}
                     />
                 </> 
             )}

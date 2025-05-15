@@ -1,7 +1,7 @@
 import './questionUtils.css';
 import { uploadFileToCloudinary } from "../cloudinaryUtils.jsx";
-
-
+import * as pdfjsLib from "pdfjs-dist/build/pdf.mjs";
+pdfjsLib.GlobalWorkerOptions.workerSrc = "/pdf.worker.js";
 
 function QuestionUtils({ typeForm, questions, setQuestions, youtubeLink, setYoutubeLink, handleConfirm, setIsExpand, isExpand,  audioLink, setAudioLink, pictures = [], setPictures, readingContent, setReadingContent }) {
 
@@ -11,14 +11,45 @@ function QuestionUtils({ typeForm, questions, setQuestions, youtubeLink, setYout
       alert("Vui lòng chọn một tệp.");
       return;
     }
-  
-    if (!file.type.startsWith("image/")) {
-      alert("Tệp không phải là ảnh. Vui lòng chọn một tệp ảnh.");
+
+    if (file.type === "application/pdf") {
+      const fileReader = new FileReader();
+      fileReader.onload = async function () {
+        const typedarray = new Uint8Array(this.result);
+        const pdf = await pdfjsLib.getDocument({ data: typedarray }).promise;
+        const urls = [];
+        for (let i = 1; i <= pdf.numPages; i++) {
+          const page = await pdf.getPage(i);
+          const viewport = page.getViewport({ scale: 2 });
+          const canvas = document.createElement("canvas");
+          const context = canvas.getContext("2d");
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+          await page.render({ canvasContext: context, viewport }).promise;
+          const base64 = canvas.toDataURL("image/png");
+          // Upload từng ảnh base64 lên Cloudinary
+          try {
+            const uploadedUrl = await uploadFileToCloudinary(base64, "pictures");
+            urls.push(uploadedUrl);
+          } catch (error) {
+            alert("Lỗi khi upload ảnh từ PDF lên Cloudinary.");
+            console.error(error);
+          }
+        }
+        setPictures((prev) => [...prev, ...urls]);
+        alert("Tải PDF lên thành công!");
+      };
+      fileReader.readAsArrayBuffer(file);
       return;
     }
-  
+
+    if (!file.type.startsWith("image/")) {
+      alert("Tệp không phải là ảnh hoặc PDF. Vui lòng chọn một tệp ảnh hoặc PDF.");
+      return;
+    }
+
     try {
-      const uploadedUrl = await uploadFileToCloudinary(file, "pictures"); // Đặt folder là "pictures"
+      const uploadedUrl = await uploadFileToCloudinary(file, "pictures");
       setPictures((prev) => [...prev, uploadedUrl]);
       alert("Tải ảnh lên thành công!");
     } catch (error) {
@@ -193,7 +224,7 @@ function QuestionUtils({ typeForm, questions, setQuestions, youtubeLink, setYout
       <div className={`editForm ${isExpand ? 'show' : ''}`}>
         {renderForm()}
         <p>Upload Pictures:</p>
-        <input type="file" accept="image/*" onChange={handlePictureUpload} />
+        <input type="file" accept="image/*,application/pdf" onChange={handlePictureUpload} />
         {pictures.length > 0 && (
           <div className="picturesPreview">
             {pictures.map((picture, index) => (

@@ -13,7 +13,7 @@ function AnswerUtils({typeForm, isPlayModalOpen, currentPlay, user, elapsedTime,
         const manage = document.querySelector('.manageTestContainer');
         const answer = document.querySelector('.answerSheetContainer');
         if (manage && answer) {
-            answer.style.marginTop = manage.offsetHeight + 10 + "px";
+            answer.style.marginTop = manage.offsetHeight + 15 + "px";
         }
     }, []);
 

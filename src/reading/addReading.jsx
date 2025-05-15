@@ -197,6 +197,8 @@ function AddReading() {
                         isExpand={isExpand}
                         readingContent={readingContent}
                         setReadingContent={setReadingContent}
+                        setPictures={setPictures}
+                        pictures={pictures}
                     />  
                 </> 
             )} 
